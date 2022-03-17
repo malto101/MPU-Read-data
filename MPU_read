@@ -71,12 +71,18 @@ void loop() {
   roll = 0.96 * gyroAngleX + 0.04 * accAngleX;
   pitch = 0.96 * gyroAngleY + 0.04 * accAngleY;
   
-  // Print the values on the serial monitor
-  Serial.print(roll);
-  Serial.print("/");
-  Serial.print(pitch);
-  Serial.print("/");
-  Serial.println(yaw);
+ if(roll>10)
+   Serial.println("1");
+   else if (roll<-10)
+    Serial.println("2");
+   else if (pitch>10)
+    Serial.println("3");
+   else if (pitch<-10) 
+    Serial.println("4");
+   else if (yaw>10) 
+    Serial.println("5");
+   else if (yaw<-10)
+    Serial.println("6"); 
 }
 void calculate_IMU_error() {
   // We can call this funtion in the setup section to calculate the accelerometer and gyro data error. From here we will get the error values used in the above equations printed on the Serial Monitor.
@@ -130,3 +136,5 @@ void calculate_IMU_error() {
   Serial.print("GyroErrorZ: ");
   Serial.println(GyroErrorZ);
 }
+ 
+ 
